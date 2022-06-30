@@ -8,7 +8,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import Comment from "../../../components/Comment/Comment";
 import SignIn from "../../../components/signin/SignIn";
 
-import Footer from "../../../components/footer/Footer";
 import WriteComment from "../../../components/writeComment/WriteComment";
 import styles from "./event.module.css";
 import useWindowSize from "../../../helpers/customHooks";
@@ -196,7 +195,6 @@ export default function Events() {
           </section>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

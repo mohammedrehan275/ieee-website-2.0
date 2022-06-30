@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Footer from "../../components/footer/Footer";
 import styles from "../../styles/Dashboard.module.css";
 import { Button, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -8,7 +7,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
-import SignIn from "../../components/signIn/SignIn";
+import SignIn from "../../components/signin/SignIn";
 import useProvideAuth from "../../utils/auth";
 import UsersTable from "../../components/usersTable/UsersTable";
 import EventCard from "../../components/eventCard/EventCard";
@@ -122,7 +121,6 @@ export default function Dashboard() {
           <SignIn />
         </div>
       )}
-      <Footer />
     </div>
   );
 }

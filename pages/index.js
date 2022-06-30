@@ -2,6 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import Chatbot from "react-chatbot-kit";
+import ActionProvider from "../chatbot/ActionProvider";
+import MessageParser from "../chatbot/MessageParser";
+import config from "../chatbot/config";
+import "react-chatbot-kit/build/main.css";
+import Logo from "../components/logo/Logo";
 import groupPhoto from "../public/assets/IEEEGroup.webp";
 import csLogo from "../public/assets/ieee-cs-logo.png";
 import rasLogo from "../public/assets/ieee-ras-logo.png";
@@ -10,12 +16,32 @@ import casLogo from "../public/assets/ieee-cas-logo.png";
 import spsLogo from "../public/assets/ieee-sps-logo.png";
 import { Button, Container, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import EventCard from "../components/eventCard/EventCard";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["home"])),
+    },
+  };
+}
+
 export default function Home() {
   const [events, setevents] = useState([]);
+  const [showBot, toggleBot] = useState(false);
+
   useEffect(() => {
     const eventsCollectionRef = query(
       collection(db, "events"),
@@ -28,9 +54,12 @@ export default function Home() {
       setevents(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     // return () => {
-      getEvents();
+    getEvents();
     // };
   }, []);
+
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -43,6 +72,24 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <>
+          {showBot && (
+            <div className={styles.app_chatbot_container}>
+              <Chatbot
+                config={config}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+              />
+            </div>
+          )}
+          <button
+            className={styles.app_chatbot_button}
+            onClick={() => toggleBot((prev) => !prev)}
+          >
+            <div>Nawab</div>
+            <Logo />
+          </button>
+        </>
         <div className={styles.home}>
           <Container
             maxWidth={false}
@@ -83,15 +130,12 @@ export default function Home() {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
+                  width: "100%",
                 }}
               >
                 <header className={styles.headers}>
-                  <Typography variant="h4">Mission</Typography>
-                  <Typography variant="subtitle1">
-                    To promote students empowerment, develop professional skills
-                    , organise diverse events and work towards IEEE&#39;s
-                    mission.
-                  </Typography>
+                  <Typography variant="h4"> {t("home:home1")}</Typography>
+                  <Typography variant="subtitle1">{t("home:home2")}</Typography>
                 </header>
                 <div>
                   <Image
@@ -110,6 +154,7 @@ export default function Home() {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
+                  width: "100%",
                 }}
               >
                 <div>
@@ -122,18 +167,14 @@ export default function Home() {
                   />
                 </div>
                 <header className={styles.headers}>
-                  <Typography variant="h4">Vision</Typography>
-                  <Typography variant="subtitle1">
-                    We envision offering a relevant platform to learn and seek
-                    industrial experience, personal development, social welfare
-                    and help explore various engineering fields.
-                  </Typography>
+                  <Typography variant="h4">{t("home:home12")}</Typography>
+                  <Typography variant="subtitle1">{t("home:home3")}</Typography>
                 </header>
               </Paper>
             </section>
             <section className={styles.home__events}>
               <Typography variant="h4" className={styles.home__events__header}>
-                LATEST EVENTS
+                {t("home:home4")}
               </Typography>
               <div className={styles.events__container}>
                 {events.map((event) => {
@@ -152,7 +193,7 @@ export default function Home() {
             </section>
             <section className={styles.ourChapters}>
               <Typography variant="h4" className={styles.ourChapters__header}>
-                OUR CHAPTERS
+                {t("home:home5")}
               </Typography>
               <div className={styles.chapter_cards}>
                 <Paper elevation={12} className={styles.chapters}>
@@ -200,41 +241,50 @@ export default function Home() {
           </section>
           <Container
             maxWidth={false}
-            className={styles.bottomContainer}
             disableGutters={true}
+            sx={{
+              width: "100%",
+              backgroundColor: "#12679b",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "25px",
+              paddingBottom: "40px",
+              borderBottom: "2px solid #ffffff",
+            }}
           >
             <div className={styles.cards}>
               <Paper elevation={12} className={styles.card}>
                 <Typography variant="h3" className={styles.red}>
                   45+
                 </Typography>
-                <Typography variant="body1">Student Members</Typography>
+                <Typography variant="body1">{t("home:home6")}</Typography>
               </Paper>
               <Paper elevation={12} className={styles.card}>
                 <Typography variant="h3" className={styles.red}>
                   40+
                 </Typography>
-                <Typography variant="body1">Events</Typography>
+                <Typography variant="body1">{t("home:home7")}</Typography>
               </Paper>
               <Paper elevation={12} className={styles.card}>
                 <Typography variant="h3" className={styles.red}>
                   5
                 </Typography>
-                <Typography variant="body1">Professional Members</Typography>
+                <Typography variant="body1">{t("home:home8")}</Typography>
               </Paper>
               <Paper elevation={12} className={styles.card}>
                 <Typography variant="h3" className={styles.red}>
                   3
                 </Typography>
-                <Typography variant="body1">Chapters</Typography>
+                <Typography variant="body1">{t("home:home9")}</Typography>
               </Paper>
             </div>
             <Typography variant="h2" className={styles.text}>
-              Ready to get started?
+              {t("home:home10")}
             </Typography>
             <Typography variant="h6" className={styles.text}>
-              Become an IEEE Member to join the first student community of Nawab
-              Shah Alam Khan college of Engineering and Technology.
+              {t("home:home11")}
             </Typography>
             <Link href="/joinus" passHref className={styles.link}>
               <Button

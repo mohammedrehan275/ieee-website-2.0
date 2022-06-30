@@ -2,12 +2,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import Image from "next/image";
-import Footer from "../components/footer/Footer";
 import styles from "../styles/About.module.css";
 import IEEEtimeline from "../components/timeline/IEEEtimeline";
 import {
   Accordion,
-  Link,
   AccordionDetails,
   AccordionSummary,
   Paper,
@@ -102,15 +100,7 @@ export default function About(props) {
 
               <div className={styles.About__ourCommunity__text}>
                 <Typography variant="h6" sx={{ textAlign: "justify" }}>
-                  IEEE has its community around the globe, with more than
-                  420,000 IEEE members. The world map has been divided into 10
-                  regions and we come under Region 10 (Asia and Pacific), we are
-                  located in India and belong to the IEEE India Council which
-                  acts as a consortium of 12 IEEE Sections located in different
-                  states of the country. IEEE Hyderabad Section foresees the
-                  activities in Telangana and Andhra Pradesh, different IEEE
-                  organizational units come under the section which includes
-                  IEEE Student Branches of colleges and universities.
+                  {t("about:our_community_content")}
                 </Typography>
               </div>
             </div>
@@ -119,12 +109,19 @@ export default function About(props) {
             elevation={12}
             sx={{
               backgroundColor: "#ffffff",
-
+              padding: "20px",
               marginBottom: "20px",
               textAlign: "center",
             }}
           >
-            <Typography variant="h4" sx={{ color: "#000", paddingTop: "20px" }}>
+            <Typography
+              variant="h4"
+              sx={{
+                color: "#c21531",
+                borderBottom: "2px solid #000",
+                display: "inline",
+              }}
+            >
               {t("about:head_what")}
             </Typography>
             <IEEEtimeline />
@@ -143,7 +140,7 @@ export default function About(props) {
               variant="h4"
               sx={{ color: "#c21531", borderBottom: "2px solid #000" }}
             >
-              HOW WE WORK
+              {t("about:head_how_we")}
             </Typography>
             <div className={styles.About__Work__image}>
               <Image
@@ -172,12 +169,7 @@ export default function About(props) {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    Comprises of Counselor, society advisors, chairs,
-                    vice-chairs, team leads, event coordinators and the
-                    leadership team members. It is responsible for looking after
-                    the workflow and maintaining integrity and sustainbility.
-                  </Typography>
+                  <Typography>{t("about:excom_content")}</Typography>
                 </AccordionDetails>
               </Accordion>
               <Accordion
@@ -196,10 +188,7 @@ export default function About(props) {
                   <Typography variant="h6">Leadership Team</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    It acts as the HR of an organization and oversees the
-                    complete function of the Student Branch.
-                  </Typography>
+                  <Typography>{t("about:lead_content")}</Typography>
                 </AccordionDetails>
               </Accordion>
               <Accordion
@@ -219,32 +208,18 @@ export default function About(props) {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
-                    This team is responsible for managing social media,
-                    promotions of events and providing support to the exisiting
-                    societies. It is internally divided into 2 teams: <br />
-                    1. Content Team - Responsible for generating content and
-                    deciding what goes up on our social media accounts and
-                    posters. <br />
-                    2. Design Team - Responsible for desiging the posters,
-                    flyers and social media posts. <br />
+                    {t("about:Publicity_content_1")}
+                    <br />
+                    {t("about:Publicity_content_2")}
+                    <br />
+                    {t("about:Publicity_content_3")} <br />
                   </Typography>
                 </AccordionDetails>
               </Accordion>
             </div>
           </Paper>
         </div>
-        <Link href="/about" locale="en">
-          <h2>English</h2>
-        </Link>
-        <Link href="/te/about" locale="te">
-          <h2>Telugu</h2>
-        </Link>
-        <Link href="/ur/about" locale="ur">
-          <h2>Urdu</h2>
-        </Link>
       </main>
-
-      <Footer />
     </div>
   );
 }

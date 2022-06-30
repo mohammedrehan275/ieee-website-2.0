@@ -11,7 +11,7 @@ import {
   programCommittee,
   socialMediaCommittee,
   membershipCommittee,
-} from "./data/profile";
+} from "../data/profile";
 
 import classes from "../styles/Ourteam.module.css";
 
@@ -34,7 +34,7 @@ export default function OurTeam() {
             }}
             href="#ecxom"
           >
-            Executive Committee
+            Leadership Team
           </Button>
           <Button
             variant="contained"
@@ -49,7 +49,7 @@ export default function OurTeam() {
             }}
             href="#program"
           >
-            Program Committee
+            Executive Committee
           </Button>
           <Button
             variant="contained"
@@ -64,7 +64,7 @@ export default function OurTeam() {
             }}
             href="#socialMedia"
           >
-            Social Media Committee
+            Publicity Team
           </Button>
           <Button
             variant="contained"
@@ -79,11 +79,35 @@ export default function OurTeam() {
             }}
             href="#membership"
           >
-            Membership Committee
+            Mentors
           </Button>
         </div>
       </section>
       <section className={classes.OurTeam__group} id="excom">
+        <Typography variant="h4" sx={{ color: "#12679b" }}>
+          Leadership Team
+        </Typography>
+        {/* <Carousel
+          autoPlay={true}
+          infiniteLoop={true}
+          showThumbs={false}
+          interval={5000}
+        > */}
+        <div className={classes.Ourteam__group__team}>
+          {excom.slice(0, 5).map((person) => (
+            <Profile
+              key={person.name}
+              name={person.name}
+              designation={person.designation}
+              linkedInURL={person.linkedInURL}
+              emailURL={person.emailURL}
+              image={person.image}
+            />
+          ))}
+        </div>
+        {/* </Carousel> */}
+      </section>
+      <section className={classes.OurTeam__group} id="program">
         <Typography variant="h4" sx={{ color: "#12679b" }}>
           Executive Committee
         </Typography>
@@ -93,47 +117,23 @@ export default function OurTeam() {
           showThumbs={false}
           interval={5000}
         > */}
-          <div className={classes.Ourteam__group__team}>
-            {excom.slice(0, 5).map((person) => (
-              <Profile
-                key={person.name}
-                name={person.name}
-                designation={person.designation}
-                linkedInURL={person.linkedInURL}
-                emailURL={person.emailURL}
-                image={person.image}
-              />
-            ))}
-          </div>
-        {/* </Carousel> */}
-      </section>
-      <section className={classes.OurTeam__group} id="program">
-        <Typography variant="h4" sx={{ color: "#12679b" }}>
-          Program Committee
-        </Typography>
-        {/* <Carousel
-          autoPlay={true}
-          infiniteLoop={true}
-          showThumbs={false}
-          interval={5000}
-        > */}
-          <div className={classes.Ourteam__group__team}>
-            {programCommittee.slice(0, 6).map((person) => (
-              <Profile
-                key={person.name}
-                name={person.name}
-                designation={person.designation}
-                linkedInURL={person.linkedInURL}
-                emailURL={person.emailURL}
-                image={person.image}
-              />
-            ))}
-          </div>
+        <div className={classes.Ourteam__group__team}>
+          {programCommittee.slice(0, 6).map((person) => (
+            <Profile
+              key={person.name}
+              name={person.name}
+              designation={person.designation}
+              linkedInURL={person.linkedInURL}
+              emailURL={person.emailURL}
+              image={person.image}
+            />
+          ))}
+        </div>
         {/* </Carousel> */}
       </section>
       <section className={classes.OurTeam__group} id="socialMedia">
         <Typography variant="h4" sx={{ color: "#12679b" }}>
-          Social Media Committee
+          Publicity Team
         </Typography>
         {/* <Carousel
           autoPlay={true}
@@ -141,23 +141,23 @@ export default function OurTeam() {
           showThumbs={false}
           interval={5000}
         > */}
-          <div className={classes.Ourteam__group__team}>
-            {socialMediaCommittee.slice(0, 6).map((person) => (
-              <Profile
-                key={person.name}
-                name={person.name}
-                designation={person.designation}
-                linkedInURL={person.linkedInURL}
-                emailURL={person.emailURL}
-                image={person.image}
-              />
-            ))}
-          </div>
+        <div className={classes.Ourteam__group__team}>
+          {socialMediaCommittee.slice(0, 6).map((person) => (
+            <Profile
+              key={person.name}
+              name={person.name}
+              designation={person.designation}
+              linkedInURL={person.linkedInURL}
+              emailURL={person.emailURL}
+              image={person.image}
+            />
+          ))}
+        </div>
         {/* </Carousel> */}
       </section>
       <section className={classes.OurTeam__group} id="membership">
         <Typography variant="h4" sx={{ color: "#12679b" }}>
-          Membership Committee
+          Mentors
         </Typography>
         <Carousel
           autoPlay={true}
@@ -203,31 +203,6 @@ export default function OurTeam() {
           </div>
         </Carousel>
       </section>
-
-      {/* <section className={classes.OurTeam__group} id="alumni">
-        <Typography variant="h4" className={classes.OurTeam__title}>
-          ALUMNI MEMBERS
-        </Typography>
-        <Carousel
-          autoPlay={true}
-          infiniteLoop={true}
-          showThumbs={false}
-          interval={5000}
-        >
-          <div className={classes.Ourteam__group__team}>
-            {membershipCommittee.slice(0, 6).map((person) => (
-              <Profile
-                key={person.name}
-                name={person.name}
-                designation={person.designation}
-                linkedInURL={person.linkedInURL}
-                emailURL={person.emailURL}
-                image={person.image}
-              />
-            ))}
-          </div>
-        </Carousel>
-      </section> */}
     </div>
   );
 }

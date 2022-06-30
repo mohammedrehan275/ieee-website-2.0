@@ -228,7 +228,7 @@ const IEEEtimeline = () => {
                     width: "100%",
                   }}
                 >
-                  <Image src="/wie/WIE_logo_white.png" layout="fill" />
+                  <Image src="/wie/WIE_logo_white.png" alt="society-logo" layout="fill" />
                 </div>
               </Icon>
             </TimelineDot>
@@ -262,7 +262,7 @@ const IEEEtimeline = () => {
                     width: "100%",
                   }}
                 >
-                  <Image src="/cs/IEEE_CS_logoicon.png" layout="fill" />
+                  <Image src="/cs/IEEE_CS_logoicon.png" alt="society-logo" layout="fill" />
                 </div>
               </Icon>
             </TimelineDot>
@@ -296,7 +296,7 @@ const IEEEtimeline = () => {
                     width: "100%",
                   }}
                 >
-                  <Image src="/ras/RAS_ICON_white.png" layout="fill" />
+                  <Image src="/ras/RAS_ICON_white.png" alt="society-logo" layout="fill" />
                 </div>
               </Icon>
             </TimelineDot>
@@ -317,7 +317,7 @@ const IEEEtimeline = () => {
             variant="body2"
             color="text.secondary"
           >
-            Exemplary Student Branch Award'21
+            Exemplary Student Branch Award&apos;21
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineConnector sx={{ height: "10px" }} />
@@ -367,7 +367,7 @@ const IEEEtimeline = () => {
                     width: "100%",
                   }}
                 >
-                  <Image src="/sps/SPS_Logo_Color_RGB.png" layout="fill" />
+                  <Image src="/sps/SPS_Logo_Color_RGB.png" alt="society-logo" layout="fill" />
                 </div>
               </Icon>
             </TimelineDot>
@@ -402,7 +402,7 @@ const IEEEtimeline = () => {
                     width: "100%",
                   }}
                 >
-                  <Image src="/cass/CAS-logo.png" layout="fill" />
+                  <Image src="/cass/CAS-logo.png" alt="society-logo" layout="fill" />
                 </div>
               </Icon>
             </TimelineDot>

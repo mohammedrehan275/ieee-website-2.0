@@ -1,15 +1,13 @@
 import { Button, Link as MLink, Paper, Typography } from "@mui/material";
 import styles from "./chapter.module.css";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Profile from "../../../components/profile/profile.js";
-
+import { chapters } from "../../../data/chapters";
 // import { chapter } from "../../data/profile";
 
 export default function Chapter({ data }) {
-  console.log(data);
   const router = useRouter();
   const { id } = router.query;
 
@@ -217,27 +215,15 @@ export default function Chapter({ data }) {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:3000/api/${params.id}`);
-  const data = await res.json();
+  const data = await chapters.find((o) => o.id === `${params.id}`);
 
   return {
-    // paths: ["/api/hello", {params: {slug: "hello"}}],
-    // fallback: false,
     props: {
       data,
     },
   };
 }
 export async function getStaticPaths() {
-  return {
-    paths: [
-      "/chapters/wie",
-      "/chapters/sps",
-      "/chapters/cass",
-      "/chapters/ras",
-      "/chapters/cs",
-      { params: { id: "cs" } },
-    ],
-    fallback: true,
-  };
+  const paths = await chapters.map((chapter) => `/chapters/${chapter.id}`);
+  return { paths, fallback: false };
 }

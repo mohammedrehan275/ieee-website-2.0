@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import Footer from "../../components/footer/Footer";
 import styles from "../../styles/Events.module.css";
 import EventCard from "../../components/eventCard/EventCard";
 import { Button, Typography } from "@mui/material";
@@ -185,7 +182,6 @@ export default function Events() {
           </Carousel>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }
